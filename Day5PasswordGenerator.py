@@ -39,4 +39,3 @@ while password_tank[0] != 0 or password_tank[1] != 0 or password_tank[2] != 0:
 for n in final_pw_list:
     final_pw += "" + n
 print(f"final password: {final_pw}")
-
