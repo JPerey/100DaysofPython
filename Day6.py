@@ -41,3 +41,42 @@ def get_news():
 get_news()
 take()
 '''
+
+# Random hurdles problem
+
+'''
+def jump ( ):
+    move()
+    turn_left()
+    move()
+    turn_left()
+    turn_left()
+    turn_left()
+    move()
+    turn_left()
+    turn_left()
+    turn_left()
+    move()
+    turn_left()
+
+while at_goal() == False:
+    jump()
+'''
+
+# solving the random maze problem on reeborgs world
+
+'''
+def turn_right():
+        turn_left()
+        turn_left()
+        turn_left()
+
+while not at_goal():
+    if right_is_clear():
+        turn_right()
+        move()
+    elif front_is_clear():
+        move()
+    else:
+        turn_left()
+'''
