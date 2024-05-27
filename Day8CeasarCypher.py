@@ -22,6 +22,7 @@ shift = int(input("Type the shift number:\n"))
 #TODO-3: Call the encrypt function and pass in the user inputs. You should be able to test the code and encrypt a message. 
 def encrypt(text_minus, shift):
     initialletter_idx = []
+    shiftedletter_list = []
     for letter in text_minus:
         # print(f"==========")
         # print(f"letter: {letter}")
@@ -33,9 +34,26 @@ def encrypt(text_minus, shift):
                 initialletter_idx.append(inner_idx)
             elif letter == "0":
                 # print(f"letter is 0: {letter}")
-                initialletter_idx.append("0")
+                initialletter_idx.append("space")
                 break
-    print(f"initial letter index: {initialletter_idx}")
+    # creation of initial letters list COMPLETE
+    for num in initialletter_idx:
+        print(f"num: {num}")
+        if num == "space":
+            shiftedletter_list.append(" ")
+        elif (int(num) + shift) <= 26:
+            shifted_num = int(num) +shift
+            shiftedletter_list.append(alphabet[shifted_num])
+        else: 
+            leftover = abs(26 - int(num) - shift)
+            shifted_num = leftover - 1
+            shiftedletter_list.append(alphabet[shifted_num])
+    
+    encoded_message = "".join(shiftedletter_list)
+        
+            
+    # print(f"initial letter index: {initialletter_idx}")
+    print(f"encoded message: {encoded_message}")
 
 def decode(text_minus, shift):
     print("not done yet")
