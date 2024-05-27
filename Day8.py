@@ -35,3 +35,32 @@ test_w = int(input()) # Width of wall (m)
 coverage = 5
 paint_calc(height=test_h, width=test_w, cover=coverage)
 """
+
+# prime checker problem
+"""
+# Write your code below this line 👇
+def prime_checker(number):
+  num_squared = number*number
+  is_prime = True
+  for i in range(1,num_squared):
+    # print(f"i: {i}")
+    if i%number == 0:
+      # print(f"i%number: {i%number}")
+      if i != number:
+        # print(f"is i same? i: {i}")
+        is_prime = False
+      else:
+        break
+  if is_prime == True:
+    print(f"It's a prime number.")
+  else:
+    print(f"It's not a prime number.")
+
+
+
+# Write your code above this line 👆
+    
+#Do NOT change any of the code below👇
+n = int(input()) # Check this number
+prime_checker(number=n)
+"""
