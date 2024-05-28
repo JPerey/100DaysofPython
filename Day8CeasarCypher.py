@@ -38,7 +38,7 @@ def encrypt(text_minus, shift):
                 break
     # creation of initial letters list COMPLETE
     for num in initialletter_idx:
-        print(f"num: {num}")
+        # print(f"num: {num}")
         if num == "space":
             shiftedletter_list.append(" ")
         elif (int(num) + shift) <= 26:
@@ -56,7 +56,33 @@ def encrypt(text_minus, shift):
     print(f"encoded message: {encoded_message}")
 
 def decode(text_minus, shift):
-    print("not done yet")
+    encrypted_initial_idx = []
+    unshifted_letter_list = []
+    for letter in text_minus:
+        for inner_idx, inner_letter in enumerate(alphabet):
+                # print(f"inner letter: {inner_letter}")
+                # print(f"inner_idx: {inner_idx}")
+                if letter == inner_letter:
+                    encrypted_initial_idx.append(inner_idx)
+                elif letter == "0":
+                    # print(f"letter is 0: {letter}")
+                    encrypted_initial_idx.append("space")
+                    break
+    for num in encrypted_initial_idx:
+        # print(f"num: {num}")
+        if num == "space":
+            unshifted_letter_list.append(" ")
+        elif (int(num) - shift) >= 0:
+            shifted_num = int(num) - shift
+            unshifted_letter_list.append(alphabet[shifted_num])
+        else: 
+            leftover = -abs(26 - int(num) - shift)
+            shifted_num = leftover - 1
+            unshifted_letter_list.append(alphabet[shifted_num])
+    
+    decoded_message = "".join(unshifted_letter_list)
+
+    print(f"Decoded message: {decoded_message}")
 
 if direction == "encode":
     encrypt(text_minus, shift)
