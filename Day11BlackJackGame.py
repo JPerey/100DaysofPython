@@ -106,6 +106,11 @@ def blackjack_game():
         
     while cpu_score < 19:
         cpu_hand.append(random.choice(deck_list))
+        cpu_score = check_gameover(cpu_hand)
+
+    ending_dialogue(player_hand, cpu_hand, player_score, cpu_score)
+    starting_dialogue()
+
 
     return None
 
@@ -126,15 +131,15 @@ def check_gameover(hand):
     return hand_score
 
 
-def starting_dialogue():
+def starting_dialogue(player_hand, cpu_hand, player_score, cpu_score):
 
     print("Welcome to the jammin black jack game!")
-    play_choice = input("Do you want to play blackjack?: 'y' or 'n' \n ")
+    play_choice = input("Do you want to play blackjack?: 'y' or 'n' ")
 
     if play_choice == "y":
         blackjack_game()
     else: 
-        ending_dialogue()
+        ending_dialogue(player_hand, cpu_hand, player_score, cpu_score)
 
     return "n"
 
