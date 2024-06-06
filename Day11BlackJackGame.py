@@ -60,13 +60,71 @@
 #Hint 14: Ask the user if they want to restart the game. If they answer yes, clear the console and start a new game of blackjack and show the logo from art.py.
 
 # ==================================================
-
+import random
 deck_list = [1,2,3,4,5,6,7,8,9,10,10,10,10,11]
 loop_choice = "y"
 
 def blackjack_game():
+    iteration = 0
+    player_hit = "y"
+    player_hand =[]
+    cpu_hand = []
+    player_score = 0
+    cpu_score = 0
+
+    if iteration == 0:
+        player_hand.append(random.choice(deck_list))
+        cpu_hand.append(random.choice(deck_list))
+        player_hand.append(random.choice(deck_list))
+        cpu_hand.append(random.choice(deck_list))
+        player_score = check_gameover(player_hand)
+        cpu_score = check_gameover(cpu_hand)
+
+        if player_score > 21 or cpu_score > 21 or player_score == 21 or cpu_score == 21:
+            player_hit = "n"
+            ending_dialogue(player_hand, cpu_hand, player_score, cpu_score)
+
+        
+    
+    while player_hit == "y":
+        player_hand_iter = 0
+        for count, card in enumerate(player_hand):
+            if player_hand_iter == count:
+                continue
+            print(f" {card}")
+            player_hand_iter += 1
+        player_hit = input("would you like to hit: 'y' or 'n'")
+        if player_hit == "y":
+            player_hand.append(random.choice(deck_list))
+            player_score = check_gameover(player_hand)
+        if player_score > 21:
+            player_hit = "n"
+            ending_dialogue(player_hand, cpu_hand, player_score, cpu_score)
+        elif player_score == 21:
+            player_hit = "n"
+            ending_dialogue(player_hand, cpu_hand, player_score, cpu_score)
+        
+    while cpu_score < 19:
+        cpu_hand.append(random.choice(deck_list))
 
     return None
+
+def check_gameover(hand):
+    if hand_sum > 21:
+        if 11 in hand:
+            new_hand = [1 if item == 11 else item for item in hand]
+            hand_sum = sum(new_hand)
+        else:
+            hand_sum = sum(hand)
+        
+    elif hand_sum <= 21:
+        hand_sum = sum(hand)
+
+    
+    hand_score = hand_sum
+
+    return hand_score
+
 
 def starting_dialogue():
 
@@ -80,7 +138,9 @@ def starting_dialogue():
 
     return "n"
 
-def ending_dialogue():
+def ending_dialogue(player_hand, cpu_hand, player_score, cpu_score):
+
+    print("Thanks for playing! See you next time!")
 
     return None
 
