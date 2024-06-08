@@ -115,6 +115,7 @@ def blackjack_game():
     return None
 
 def check_gameover(hand):
+    hand_sum = sum(hand)
     if hand_sum > 21:
         if 11 in hand:
             new_hand = [1 if item == 11 else item for item in hand]
@@ -144,10 +145,20 @@ def starting_dialogue(player_hand, cpu_hand, player_score, cpu_score):
     return "n"
 
 def ending_dialogue(player_hand, cpu_hand, player_score, cpu_score):
+    
+    if cpu_score == 21:
+        print (f"cpu wins with 21!")
+    elif player_score == 21:
+        print("player wins with 21!")
+    elif player_score < 21 and player_score > cpu_score:
+         print(f"cpu has won with {player_score}. Player had a score of {cpu_score}")
+    elif cpu_score < 21 and cpu_score > player_score:
+        print(f"cpu has won with {cpu_score}. Player had a score of {player_score}")
+
 
     print("Thanks for playing! See you next time!")
 
     return None
 
 while loop_choice == "y":
-    loop_choice = starting_dialogue()
+    loop_choice = starting_dialogue( [], [], 0, 0)
