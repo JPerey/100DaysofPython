@@ -332,9 +332,57 @@ data = [
         'country': 'United States'
     }
 ]
+
 # =====================================================================================================================
 # =====================================================================================================================
 # =====================================================================================================================
+
+def game_end(score):
+    print("G A M E  E N D E D !")
+    print(f"F I N A L  S C O R E  :  {score}")
+
+def play_game():
+    game_over = False
+    score = 0
+    correct_choice = 0
+    option_1 = random.choice(data)
+    while True:
+        option_2 = random.choice(data)
+        if option_2["name"] == option_1["name"]:
+            continue
+        else:
+            break
+    
+    while game_over == False:
+        print(f"N A M E  :  {option_1['name']}")
+        print("===============")
+        print(f"N A M E  :  {option_2['name']}")
+
+        print(f"\ncurrent score: {score}")
+        game_choice = int(input("which has the higher IG follower count ('1' or '2'): "))
+
+        if option_1["follower_count"] > option_2["follower_count"]:
+            correct_choice = 1
+            new_num_1 = option_1
+        else:
+            correct_choice = 2
+            new_num_1 = option_2
+        
+        if game_choice == correct_choice:
+            score += 1
+            option_1 = new_num_1
+            while True:
+                option_2 = random.choice(data)
+                if option_2["name"] == option_1["name"]:
+                    continue
+                else:
+                    break
+        else:
+            print(f"I N C O R R E C T  A N S W E R")
+            print(f"{option_1['name']} : {option_1['follower_count']}")
+            print(f"{option_2['name']} : {option_2['follower_count']}")
+            game_over = True
+            game_end(score)
 
 
 print(logo)
@@ -343,6 +391,11 @@ print('W E L C O M E  T O  J A M M I N  H I G H E R / L O W E R  G A M E')
 player_game_choice = input("Would you like to play the game ('y' or 'n'): ")
 
 while player_game_choice == 'y':
-    
+    play_game()
+    player_game_choice = input("Would you like to play the game ('y' or 'n'): ")
+
+print("G O O D  G A M E")
+
+
 
 
